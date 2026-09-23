@@ -1,0 +1,124 @@
+<div class="animate-fade-in space-y-6 w-full max-w-4xl mx-auto py-6 px-4 sm:px-6 lg:px-8 font-sans">   
+  <div class="bg-white p-6 rounded-xl border border-(--border-color-2) shadow-xs space-y-5 relative">    
+    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-gray-100 pb-4">
+      <div class="space-y-1">
+        <h1 class="text-xl font-bold">
+          Ngx-api-paginator
+        </h1>
+        <p class="text-xs text-(--secondary-text) font-medium">{{ t().subtitle }}</p>
+      </div>
+
+      <div class="flex items-center gap-1 bg-(--bg-2) p-1 rounded-lg border border-(--border-color-2) shrink-0">
+        <button (click)="lang.set('es')" [class]="lang() === 'es' ? 'bg-white text-(--text-color) shadow-2xs font-bold' : 'text-(--secondary-text) hover:text-(--secondary-text)'" class="px-3 py-1 rounded-md text-xs transition-all cursor-pointer">
+          ES
+        </button>
+        <button (click)="lang.set('en')" [class]="lang() === 'en' ? 'bg-white text-(--text-color) shadow-2xs font-bold' : 'text-(--secondary-text) hover:text-(--secondary-text)'" class="px-3 py-1 rounded-md text-xs transition-all cursor-pointer">
+          EN
+        </button>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div class="flex flex-col gap-2">
+        <label class="text-xs font-bold text-(--secondary-text) uppercase tracking-wide">
+          {{ t().variantLabel }}
+        </label>
+        <select (change)="selectedVariant.set($any($event.target).value)" class="h-[38px] border-2 border-(--border-color-2) focus:outline-none focus:ring-0 focus:border-(--primary-color) py-1.5 px-3 bg-white rounded-lg cursor-pointer w-full text-xs font-medium text-(--text-color)">
+          <option value="rounded" [selected]="selectedVariant() === 'rounded'">Rounded (Default)</option>
+          <option value="circle">Circle</option>
+          <option value="minimal">Minimal (Text only)</option>
+          <option value="flat">Flat</option>
+          <option value="bordered">Bordered</option>
+          <option value="shadow">Shadow</option>
+        </select>
+      </div>
+
+      <div class="flex flex-col gap-2">
+        <label class="text-xs font-bold text-(--secondary-text) uppercase tracking-wide">
+          {{ t().prevLabelText }}
+        </label>
+        <input type="text" [value]="customPrevText()" (input)="customPrevText.set($any($event.target).value)" class="h-[38px] border-2 border-(--border-color-2) focus:outline-none focus:ring-0 focus:border-(--primary-color) py-1.5 px-3 bg-white rounded-lg text-xs font-medium text-(--text-color) w-full">
+      </div>
+
+      <div class="flex flex-col gap-2">
+        <label class="text-xs font-bold text-(--secondary-text) uppercase tracking-wide">
+          {{ t().nextLabelText }}
+        </label>
+        <input type="text" [value]="customNextText()" (input)="customNextText.set($any($event.target).value)" class="h-[38px] border-2 border-(--border-color-2) focus:outline-none focus:ring-0 focus:border-(--primary-color) py-1.5 px-3 bg-white rounded-lg text-xs font-medium text-(--text-color) w-full">
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+      <div class="flex flex-col gap-2">
+        <label class="text-xs font-bold text-(--secondary-text) uppercase tracking-wide">
+          {{ t().perPageLabel }}
+        </label>
+        <input type="number" min="1" max="50" [value]="perPage()" (input)="updatePerPage($event)" class="h-[38px] border-2 border-(--border-color-2) focus:outline-none focus:ring-0 focus:border-(--primary-color) py-1.5 px-3 bg-white rounded-lg text-xs font-medium text-(--text-color) w-full">
+      </div>
+
+      <div class="flex flex-col gap-2">
+        <label class="text-xs font-bold text-(--secondary-text) uppercase tracking-wide">
+          {{ t().showInfoLabel }}
+        </label>
+        <div class="h-[38px] flex items-center">
+          <button type="button" role="switch" [attr.aria-checked]="showInfoState()" (click)="showInfoState.set(!showInfoState())" [class]="showInfoState() ? 'bg-(--primary-color)' : 'bg-gray-200'"
+            class="relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none">
+            <span [class]="showInfoState() ? 'translate-x-5' : 'translate-x-0'" class="pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow-xs ring-0 transition duration-200 ease-in-out"></span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="pt-1 flex justify-end items-center">
+      <span class="text-[11px] font-medium text-(--secondary-text) tracking-wide flex items-center gap-1.5">
+        {{ t().madeWith }} <span class="text-(--secondary-pink, #db2777)">🩵</span> {{t().by }} <a href="https://iceli.dev/" class="text-(--text-color) font-bold">Iceli</a>
+      </span>
+    </div>
+  </div>
+
+  <div class="space-y-4">
+    <div class="flex flex-col sm:flex-row sm:justify-between items-start sm:items-center gap-2 px-1">
+      <span class="text-xs font-bold uppercase tracking-wider text-(--secondary-text)">
+        {{ t().apiDataTitle }}
+      </span>
+      <span class="text-xs font-semibold px-2.5 py-1 bg-gray-100 text-(--secondary-text) rounded-md">
+        {{ t().activeVariant }}: <span class="font-bold text-(--text-color)">{{ selectedVariant() }}</span>
+      </span>
+    </div>
+
+    @if (loading()) {
+      <div class="flex justify-center items-center py-16 rounded-xl">
+        <div class="animate-spin rounded-full h-8 w-8 border-2 border-(--primary-color) border-t-transparent"></div>
+      </div>
+    } @else {
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        @for (item of items(); track item.id) {
+          <div class="p-4 bg-white rounded-xl border border-(--border-color-2) hover:border-gray-300 transition duration-150 flex gap-4 items-center group shadow-2xs">
+            <img [src]="item.image" [alt]="item.title" class="w-16 h-16 object-cover rounded-lg bg-gray-50 p-1 shrink-0 group-hover:scale-102 transition-transform">
+            <div class="flex-1 min-w-0">
+              <span class="text-[10px] font-bold px-2 py-0.5 bg-gray-100 text-(--secondary-text) rounded-md uppercase">
+                {{ item.category }}
+              </span>
+              <h3 class="text-xs font-bold text-(--text-color) truncate mt-1">{{ item.title }}</h3>
+              <div class="mt-1 font-bold text-(--secondary-pink, #db2777) text-xs">{{ item.price | currency:(lang() === 'es' ? 'MXN' : 'USD'):'symbol-narrow':'1.2-2' }}</div>
+            </div>
+          </div>
+        }
+      </div>
+    }
+  </div>
+
+  <lib-ngx-api-paginator 
+    [totalItems]="totalItems()" 
+    [perPage]="perPage()" 
+    [currentPage]="currentPage()" 
+    [style]="selectedVariant()" 
+    [showInfo]="showInfoState()"
+    [textShowing]="t().showing"
+    [textTo]="t().to"
+    [textOf]="t().of"
+    [textResults]="t().results"
+    [textPrevious]="customPrevText()"
+    [textNext]="customNextText()"
+    (pageChanged)="onPageChange($event)"/>
+</div>

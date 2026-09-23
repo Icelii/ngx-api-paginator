@@ -7,6 +7,9 @@
     "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
+    "paths": {
+      "ngx-api-paginator": ["./dist/ngx-api-paginator"]
+    },
     "skipLibCheck": true,
     "isolatedModules": true,
     "experimentalDecorators": true,
@@ -19,5 +22,19 @@
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true
   },
-  "files": []
+  "files": [],
+  "references": [
+    {
+      "path": "./projects/ngx-api-paginator/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/ngx-api-paginator/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/demo-app/tsconfig.app.json"
+    },
+    {
+      "path": "./projects/demo-app/tsconfig.spec.json"
+    }
+  ]
 }

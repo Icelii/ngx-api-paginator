@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import 'tailwindcss';
+
+@theme {
+  --font-sans: "Inter", sans-serif;
+}
+
+:root {
+  --primary-color: #66A3BF;
+  --border-color-1: #C3D4E9;
+  --border-color-2: #ECECEC;
+  --secondary-text: #596780;
+  --bg-1: #D9D9D9;
+  --bg-2: #F7F7F7;
+}
+
+/* SELECT STYLES */
+select, ::picker(select) {
+  appearance: base-select;
+}
+
+select {
+  cursor: pointer;
+  background-color: white;
+  text-align: left;  
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  box-sizing: border-box;
+  padding-right: 0.75rem;
+}
+
+select::picker-icon {
+  content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  width: 14px;
+  height: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 0.5rem;
+  margin-top: 0;
+  margin-bottom: 0;
+  flex-shrink: 0;
+  align-self: center;
+}
+
+select:open::picker-icon {
+  content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='18 15 12 9 6 15'%3E%3C/polyline%3E%3C/svg%3E");
+}
+
+::picker(select) {
+  border: 1px solid var(--border-color-2);
+  border-radius: 8px;
+  background-color: var(--bg-2, #ffffff);
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+  color: black;
+  padding: 6px;
+}
+
+select option {
+  padding: 8px 12px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: left;
+  width: 100%;
+  box-sizing: border-box;
+  transition: background-color 0.15s ease, color 0.15s ease;
+  margin-bottom: 4px;
+}
+
+select option:last-child {
+  margin-bottom: 0;
+}
+
+select option:focus:not(:checked):not(:hover) {
+  background-color: #f3f4f6;
+  color: #1f2937;
+}
+
+select option:hover {
+  background-color: var(--primary-color) !important;
+  color: white !important;
+}
+
+select option:checked {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+select option::checkmark {
+  color: currentColor;
+  font-weight: bold;
+  order: 2;
+  margin-left: auto;
+}

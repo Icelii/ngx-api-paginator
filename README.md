@@ -6,11 +6,17 @@
 [![Angular](https://img.shields.io/badge/Angular-22%2B-DD0031?logo=angular\&logoColor=white)](https://angular.dev)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-`@icelii/ngx-api-paginator` is a reusable pagination component for Angular applications that consume data from paginated APIs.
+`@icelii/ngx-api-paginator` is a reusable pagination component for Angular applications that consume paginated API data.
 
 It provides a responsive pagination UI, multiple visual styles, customizable labels, automatic page calculation, and a simple output event for handling page changes.
 
 ---
+
+## Preview
+
+![Ngx API Paginator Preview](https://iceliiprojects.s3.us-west-004.backblazeb2.com/ngx-api-paginator+Preview.png)
+
+[View Live Demo](https://ngx-api-paginator-demo.netlify.app)
 
 ## ✨ Features
 
@@ -41,7 +47,7 @@ npm install @icelii/ngx-api-paginator
 
 ## 🚀 Basic Usage
 
-`NgxApiPaginator` is a standalone component and can be imported directly into your Angular component.
+`NgxApiPaginator` is a standalone component that can be imported directly into your Angular component.
 
 ### Component
 
@@ -79,19 +85,19 @@ export class ProductsComponent {
 />
 ```
 
-The paginator calculates the total number of pages automatically:
+The paginator automatically calculates the total number of pages:
 
 ```ts
 Math.max(1, Math.ceil(totalItems / perPage))
 ```
 
-You do **not** need to provide `totalPages`.
+You **do not need to provide `totalPages`**.
 
 ---
 
 ## 🔌 Using with a Paginated API
 
-The paginator only handles the pagination UI and page selection. It does **not** make API requests.
+The paginator is responsible only for the pagination UI and page selection. It does **not** make API requests.
 
 Your application is responsible for:
 
@@ -124,11 +130,11 @@ onPageChange(page: number) {
 }
 ```
 
-This makes the paginator independent of your backend framework or API response structure.
+This keeps the paginator independent of your backend framework or API response structure.
 
-### Supported API formats
+### Supported API Formats
 
-The library does not require a specific response format.
+The library does not require a specific API response format.
 
 For example:
 
@@ -192,7 +198,7 @@ Example:
 
 ## 🎨 Primary Color
 
-The active page and other primary pagination elements use the CSS custom property:
+The active page and other primary pagination elements use the following CSS custom property:
 
 ```css
 --primary-color
@@ -218,7 +224,7 @@ You can use any valid CSS color:
 
 ## 🌍 Customizing Labels
 
-The paginator includes customizable labels, allowing you to adapt the component to different languages.
+The paginator provides customizable labels, allowing you to adapt the component to different languages.
 
 ### English
 
@@ -344,7 +350,7 @@ onPageChange(page: number) {
 
 ## 👁️ Optional UI Controls
 
-### Hide results information
+### Hide Results Information
 
 ```html
 <lib-ngx-api-paginator
@@ -352,7 +358,7 @@ onPageChange(page: number) {
 />
 ```
 
-### Hide Previous/Next text
+### Hide Previous/Next Text
 
 Pass an empty string to display only the navigation arrows:
 
@@ -382,7 +388,7 @@ Contributions are welcome!
 
 If you would like to improve the library, fix a bug, add a feature, or improve the documentation, feel free to contribute.
 
-### Development setup
+### Development Setup
 
 1. Fork the repository.
 2. Clone your fork:
@@ -427,7 +433,7 @@ git push origin feat/my-new-feature
 
 9. Open a **Pull Request** describing your changes.
 
-### Contribution guidelines
+### Contribution Guidelines
 
 When contributing, please try to:
 
@@ -455,4 +461,3 @@ See the [LICENSE](LICENSE) file for more information.
 **Iceli**
 
 * Website: https://iceli.dev/
-* GitHub: [@Icelii](https://github.com/Icelii)

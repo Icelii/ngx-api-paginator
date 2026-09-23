@@ -7,7 +7,10 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:demo-app": "node dist/demo-app/server/server.mjs"
+    "serve:ssr:demo-app": "node dist/demo-app/server/server.mjs",
+    "build:lib": "ng build ngx-api-paginator",
+    "build:demo": "ng build demo-app",
+    "build:prod": "npm run build:lib && npm run build:demo"
   },
   "private": true,
   "packageManager": "npm@12.0.2",

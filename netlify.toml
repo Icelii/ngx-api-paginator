@@ -1,0 +1,9 @@
+[build]
+  command = "npm run build:demo"
+  publish = "dist/demo-app/browser"
+
+[build.environment]
+  ANGULAR_PROJECT = "demo-app"
+
+[[plugins]]
+  package = "@netlify/angular-runtime"

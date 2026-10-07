@@ -1,6 +1,6 @@
 {
   "name": "@icelii/ngx-api-paginator",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "description": "A modern, lightweight, and highly customizable pagination component for Angular standalone applications with Tailwind CSS support.",
   "author": "Iceli",
   "license": "MIT",

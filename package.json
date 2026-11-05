@@ -10,7 +10,8 @@
     "serve:ssr:demo-app": "node dist/demo-app/server/server.mjs",
     "build:lib": "ng build ngx-api-paginator",
     "build:demo": "ng build demo-app",
-    "build:prod": "npm run build:lib && npm run build:demo"
+    "build:prod": "npm run build:lib && npm run build:demo",
+    "publish:lib": "npm run build:lib && npm publish ./dist/ngx-api-paginator"
   },
   "private": true,
   "packageManager": "npm@12.0.2",

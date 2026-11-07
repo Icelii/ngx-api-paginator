@@ -4,13 +4,13 @@ A lightweight, modern, and customizable pagination component for **Angular 22+**
 
 [![npm](https://img.shields.io/npm/v/@icelii/ngx-api-paginator?logo=npm)](https://www.npmjs.com/package/@icelii/ngx-api-paginator)
 [![Angular](https://img.shields.io/badge/Angular-22%2B-DD0031?logo=angular\&logoColor=white)](https://angular.dev)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/Icelii/ngx-api-paginator/blob/main/LICENSE)
 
 ## Preview
 
 ![Ngx API Paginator Preview](https://iceliiprojects.s3.us-west-004.backblazeb2.com/ngx-api-paginator+Preview.png)
 
-[View Live Demo](YOUR_DEMO_URL)
+[View Live Demo](https://ngx-api-paginator-demo.netlify.app/)
 
 ## Features
 
@@ -33,6 +33,18 @@ A lightweight, modern, and customizable pagination component for **Angular 22+**
 npm install @icelii/ngx-api-paginator
 ```
 
+### Tailwind CSS setup
+
+The component uses Tailwind CSS v4 utility classes. Tailwind does not scan `node_modules` by default, so register the library as a source in your global stylesheet (for example `src/styles.css`):
+
+```css
+@import "tailwindcss";
+
+@source "../node_modules/@icelii/ngx-api-paginator";
+```
+
+The path is relative to the stylesheet. Without this, the paginator will render without styles.
+
 ## Usage
 
 Import the component into your standalone Angular component:
@@ -43,7 +55,6 @@ import { NgxApiPaginator } from '@icelii/ngx-api-paginator';
 
 @Component({
   selector: 'app-products',
-  standalone: true,
   imports: [NgxApiPaginator],
   template: `
     <lib-ngx-api-paginator
@@ -74,6 +85,8 @@ Math.max(1, Math.ceil(totalItems / perPage))
 ```
 
 You only need to provide `currentPage`, `perPage`, and `totalItems`.
+
+> The page buttons are hidden when there is only one page. The results information is still shown unless `showInfo` is `false`.
 
 ## API Integration
 
@@ -133,7 +146,7 @@ Example:
 
 ## Custom Primary Color
 
-The paginator uses the `--primary-color` CSS variable for its primary elements.
+The paginator uses the `--primary-color` CSS variable for the active page and other primary elements. It has no default value, so you must define it; otherwise the active page will not be visible.
 
 Add it to your global stylesheet:
 
@@ -239,9 +252,10 @@ This is useful for compact or mobile layouts.
 ## Requirements
 
 * **Angular 22+**
-* **Tailwind CSS**
+* **Tailwind CSS v4**
+* A `--primary-color` CSS variable (see [Custom Primary Color](#custom-primary-color))
 
-The component uses Tailwind utility classes internally.
+The component uses Tailwind utility classes internally. See [Tailwind CSS setup](#tailwind-css-setup).
 
 ## Contributing
 
